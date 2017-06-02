@@ -9,7 +9,9 @@ You need node.js - go get it.
 ## To run:
 
 1: Open repo folder in terminal and use npm install command.
+
 2: Run mongod --dbpath path-to-repo-on-disk/data/db
+
 3: Navigate to repo dir and run node.server.js
 
 App should be running now.
