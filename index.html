@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html ng-app='app'>
+  <head>
+    <link rel="stylesheet" href="/assets/css/my.css"/>
+  </head>
+  <body>
+    <div ng-controller='PostsCtrl' class='container'>
+      <h1><center>Shoutbox</center></h1>
+      Your Nick
+      <form role='form'>
+          <div class='form-group'>
+            <div class="input-group">
+            <input ng-model="postName" class='form-control'> 
+            </div>
+          </div>
+        </form>
+      Your Shout
+      <form role='form'>
+        <div class='form-group'>
+          <div class="input-group">
+            <input ng-model="postBody" class='form-control'>
+            <span class='input-group-btn'>
+              <button ng-click='addPost()' class='btn btn-default'>Add Shout</button>
+            </span>
+          </div>
+        </div>
+      </form>
+      <ul class='list-group'>
+        <li ng-repeat='post in posts' class='list-group-item'>
+          <strong>@{{ post.username }}</strong>
+          <span>{{ post.body }}</span>
+        </li>
+      </ul>
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script>
+      var app = angular.module('app', [])
+      app.controller('PostsCtrl', function ($scope,$http) {
+        
+        $scope.addPost = function () {
+
+                dataToSend = ({"Name" : $scope.postName, "Post:" : $scope.postBody})
+                var json= JSON.stringify(dataToSend);
+
+                $http({
+                  method: 'POST',
+                  url: '/quotes',
+                  data: dataToSend
+                  }).then(function (success){
+                    console.log("sent")
+                  },function (error){
+                    console.log(error)
+                  });
+
+            if ($scope.postBody) {
+            $scope.posts.unshift({
+              username: $scope.postName,
+              body: $scope.postBody
+            }),
+               
+          $scope.postBody = ''
+          $scope.postName = ''
+
+          }
+        }
+        
+        $scope.posts = []
+
+      })
+    </script>
+  </body>
+</html
