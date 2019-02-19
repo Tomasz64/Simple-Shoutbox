@@ -1,10 +1,10 @@
 # Simple-Shoutbox
 School project number 2 - It uses MEAN stack aka Mongo,Express,Angular,Node.
 
-##Pre-Requisites:
+## Pre-Requisites:
 
-You need MongoDB - go get it.
-You need node.js - go get it.
+- MongoDB 
+- node.js 
 
 ## To run:
 
